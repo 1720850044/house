@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // new Promise(resolve => { // p1
+        //     resolve(1);
+        //     // p2
+        //     Promise.resolve().then(() => {
+        //         console.log(2); // t1
+        //     });
+        //     console.log(4)
+        // }).then(t => {
+        //     console.log(t); // t2
+        // });
+        // console.log(3);   
+
+        // Promise.reject('a')
+        // .then(()=>{  
+        //     console.log('a passed'); 
+        // })
+        // .catch(()=>{  
+        //     console.log('a failed'); 
+        // });  
+        // Promise.reject('b')
+        // .catch(()=>{  
+        //     console.log('b failed'); 
+        // })
+        // .then(()=>{  
+        //     console.log('b passed');
+        // })
+        // new Promise(resolve => {
+        //     resolve(999);
+        // }).then((val) => {
+        //     console.log(val)
+        // })
+        Promise.resolve(1)
+        .then((res) => {
+            console.log(res);
+            return 2;
+        })
+        // .catch((res) => {
+        //     console.log(res);
+        //     return 3;
+        // })
+        // .then((res) => {
+        //     console.log(res);
+        // });
+
+        // Promise.resolve()
+        // .then( () => {
+        //     return new Error('error!')
+        // })
+        // .then( res => {
+        //     console.log('then: ', res)
+        // })
+        // .catch( err => {
+        //     console.log('catch: ', err)
+        // });
+
+    </script>
+</body>
+</html>

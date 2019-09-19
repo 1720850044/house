@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="./promise.js"></script>
+</head>
+<body>
+        <div id="app">
+            <router-view></router-view>
+        </div>
+
+    <script>
+        // const User = {
+        //     template: '<div>User {{ $route.params.id }}</div>'
+        // }
+        // const router = new VueRouter({
+        //     routes: [
+        //         { path: '/user/:id', component: User }
+        //     ]
+        // }
+        function fn(resolve){
+            setTimeout(function(){
+                resolve(123);
+            },3000);
+        }
+        let p0 = new Promise(fn);
+        let p1 = Promise.resolve(p0);
+        // 返回为true，返回的 Promise 即是 入参的 Promise 对象。
+        console.log(p0,p1);
+        console.log(p0 === p1);
+        const User = {
+            template: `
+                <div class="user">
+                    <h2>User {{ $route.params.id }}</h2>
+                    <router-view></router-view>
+                </div>
+            `
+        }
+        const router = new VueRouter({
+            routes: [
+                { path: '/user/:id', component: User,
+                children: [
+                    {
+                    // UserProfile will be rendered inside User's <router-view>
+                    // when /user/:id/profile is matched
+                    path: 'profile',
+                    component: UserProfile
+                    },
+                    {
+                    // UserPosts will be rendered inside User's <router-view>
+                    // when /user/:id/posts is matched
+                    path: 'posts',
+                    component: UserPosts
+                    }
+                ]
+                }
+            ]
+        })
+        const app = new Vue({
+            router
+        }).$mount('#app');
+
+    </script>
+</body>
+</html>
